@@ -34,7 +34,7 @@ func (m *Mockinator) Execute(funcInterface interface{}) (interface{}, error) {
 }
 
 func (m *Mockinator) ExecuteAndReturnErrorOnly(funcInterface interface{}) error {
-	_, err := m.Execute(m.getNameByInterface(funcInterface))
+	_, err := m.Execute(funcInterface)
 	return err
 }
 

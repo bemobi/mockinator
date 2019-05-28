@@ -19,6 +19,10 @@ func (d *mockExemple) functionExample() (int, error) {
 	return a.(int), b
 }
 
+func (d *mockExemple) functionOnlyError() error {
+	return d.Mock.ExecuteAndReturnErrorOnly(d.functionOnlyError)
+}
+
 func TestMock(t *testing.T) {
 
 	mock := Mockinator{}
@@ -38,6 +42,12 @@ func TestMock(t *testing.T) {
 
 			g.Assert(number).Equal(expectedIntReturn)
 			g.Assert(err).Equal(expectedError)
+		})
+
+		g.It("should mock return only error as expected", func() {
+			d.Mock.SetError(d.functionOnlyError, expectedError)
+			g.Assert(d.functionOnlyError()).Equal(expectedError)
+
 		})
 	})
 
