@@ -1,0 +1,13 @@
+---
+kind: pipeline
+name: mockinator
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: run tests
+  image: golang
+  commands:
+  - go test ./...
