@@ -7,7 +7,12 @@ platform:
   arch: amd64
 
 steps:
-- name: run tests
-  image: golang
-  commands:
-  - go test ./...
+  - name: run tests
+    image: golang
+    commands:
+      - go test ./...
+  - name: coverage
+    image: plugins/codecov
+    settings:
+      token:
+        from_secret: umbrella-token
